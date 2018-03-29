@@ -11,8 +11,10 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/learn_passport');
-var db = mongoose.connection;
+mongoose.connect('mongodb://mittalprince:prince25@ds227469.mlab.com:27469/learn_passport',function(){
+    console.log('connected to mongodb');
+});
+
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
