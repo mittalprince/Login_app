@@ -11,7 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://mittalprince:prince25@ds227469.mlab.com:27469/learn_passport',function(){
+mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds227469.mlab.com:27469/<databasename>',function(){
     console.log('connected to mongodb');
 });
 
