@@ -38,21 +38,32 @@ router.post('/register', function(req, res){
             errors:errors
         });
     } else {
-        var newUser = new User({
-            name: name,
-            email:email,
-            username: username,
-            password: password
-        });
+        User.findOne({email:email, username:username}).then(function(currentUser){
+            if(currentUser){
+                console.log('user is already registered:',currentUser)
+                req.flash('success_msg', 'User is already registered with same username or email');
+                res.redirect('/users/register')
 
-        User.createUser(newUser, function(err, user){
-            if(err) throw err;
-            console.log(user);
-        });
+            }
+            else {
+                var newUser = new User({
+                    name: name,
+                    email:email,
+                    username: username,
+                    password: password
+                });
 
-        req.flash('success_msg', 'You are registered and can now login');
+                User.createUser(newUser, function(err, user){
+                    if(err) throw err;
+                    console.log(user);
+                });
 
-        res.redirect('/users/login');
+                req.flash('success_msg', 'You are registered and can now login');
+
+                res.redirect('/users/login');
+            }
+        })
+
     }
 });
 
