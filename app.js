@@ -11,7 +11,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds227469.mlab.com:27469/<databasename>',function(){
+mongoose.connect('mongodb://<dbuser>:<dbpassword>@ds227469.mlab.com:27469/<dbname>',function(){
     console.log('connected to mongodb');
 });
 
@@ -70,7 +70,7 @@ app.use(function(req,res,next){
 app.use('/', routes);
 app.use('/users', users);
 
-app.set('port', (process.env.PORT || 7000));
+app.set('port', (process.env.PORT || 8000));
 
 app.listen(app.get('port'), function(){
     console.log('Server listening on port ' +app.get('port'));
